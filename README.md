@@ -51,7 +51,7 @@ npm install express axios cors
 #### 6.Run the Application:
 Start your application by running:
 ```bash
-node qr-code-generator.js
+node qr_code_generator.js
 ```
 
 #### 7.Access the Application:

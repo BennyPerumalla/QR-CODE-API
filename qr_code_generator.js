@@ -36,18 +36,58 @@ app.get('/', (req, res) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>QR Code Generator</title>
             <style>
-                body { text-align: center; font-family: Arial, sans-serif; }
-                input { margin-bottom: 10px; padding: 10px; width: 300px; }
-                button { padding: 10px; }
-                img { margin-top: 20px; }
+                * { box-sizing: border-box; margin: 0; padding: 0; }
+                body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    font-family: Arial, sans-serif;
+                    background-color: #f8f8f8;
+                    color: #333;
+                }
+                .container {
+                    max-width: 320px;
+                    width: 100%;
+                    text-align: center;
+                }
+                h1 {
+                    font-size: 1.5em;
+                    margin-bottom: 1rem;
+                }
+                input, button {
+                    width: 100%;
+                    padding: 12px;
+                    margin: 10px 0;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    font-size: 1em;
+                }
+                button {
+                    background-color: #007bff;
+                    color: #fff;
+                    cursor: pointer;
+                    transition: background 0.3s ease;
+                }
+                button:hover {
+                    background-color: #0056b3;
+                }
+                img {
+                    margin-top: 20px;
+                    max-width: 100%;
+                    height: auto;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                }
             </style>
         </head>
         <body>
-            <h1>QR Code Generator</h1>
-            <input id="qrCodeText" placeholder="Enter text or URL" />
-            <button onclick="generateQRCode()">Generate QR Code</button>
-            <div id="qrCodeContainer"></div>
-
+            <div class="container">
+                <h1>QR Code Generator</h1>
+                <input id="qrCodeText" placeholder="Enter text or URL" />
+                <button onclick="generateQRCode()">Generate QR Code</button>
+                <div id="qrCodeContainer"></div>
+            </div>
             <script>
                 async function generateQRCode() {
                     const qrCodeText = document.getElementById('qrCodeText').value;
@@ -60,7 +100,7 @@ app.get('/', (req, res) => {
                     });
                     const data = await response.json();
                     if (data.image) {
-                        document.getElementById('qrCodeContainer').innerHTML = '<h2>Your QR Code:</h2><img src="' + data.image + '" alt="QR Code" />';
+                        document.getElementById('qrCodeContainer').innerHTML = '<img src="' + data.image + '" alt="QR Code" />';
                     } else {
                         alert('Error generating QR code');
                     }
